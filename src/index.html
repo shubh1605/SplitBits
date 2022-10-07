@@ -16,13 +16,13 @@
         </div>
         
         <p id="totalL" style='text-align: center; font-size:20px;font-weight: 700;
-        font-size: 1.5rem;'>Username: Account</label>
+        font-size: 1.5rem;'>Username: <span id="username"></span></label>
             <br><br>
         <form class="insert">
           <label id="totalL"><i class="fas fa-coins"></i> How much?</label>
           <input type="number" id="total" placeholder="add the total">
 
-            <div id="items">
+          <div id="items">
            <label id="totalL"><i class="fas fa-users"></i> Add people</label> 
            <input type="number" id="people" placeholder="add account">
            <div class='buttonSpace'>
@@ -30,10 +30,7 @@
           
             </div>
       
-          {% comment %} <label id="tipL"><i class="fas fa-heart"></i> Feelin' generous? <button id="addTip">Add a tip</button></label>
-          <div id="tipInput">
-            <input type="number" id="tipPercent" placeholder="add % of the total">
-          </div> {% endcomment %}
+          
           <div class="buttonSpace">
             <button id="splitBtn">Split!</button>
             <button id="resetBtn">Reset</button>
@@ -57,5 +54,12 @@
         });
           
       </script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+      <!-- Include all compiled plugins (below), or include individual files as needed -->
+      <script src="vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@0.20.6/dist/web3.min.js"></script>
+      <script src="vendor/truffle-contract/dist/truffle-contract.js"></script>
+      <script src="app.js"></script>
+      
 </body>
 </html>

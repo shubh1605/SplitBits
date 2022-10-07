@@ -2,15 +2,21 @@ pragma solidity ^0.5.0;
 
 contract SplitBits {
 
-    // Our constructor
-    //constructor() {
-    //}
-
-    struct Participant {
+     struct Participant {
         string name;
         address waddress;
         int balance;
     }
+
+    // Our constructor
+    constructor() {
+        participants["0xa3e5956BDEeB9098723152B64b741e6F8C3d510E"] = Participant({name:"Shubh",waddress:"0xa3e5956BDEeB9098723152B64b741e6F8C3d510E", balance: 0});
+        participants["0x3c294F5aF1515d05C89680d50a653056A69970D9"] = Participant({name:"Harshit",waddress:"0x3c294F5aF1515d05C89680d50a653056A69970D9",balance:0});
+        participants["0x3A5de49BEF89E85e747D36a868f4975cC562149D"] = Participant({name:"Kashish",waddress:"0x3A5de49BEF89E85e747D36a868f4975cC562149D",balance:0});
+
+    }
+
+   
 
     struct Expense {
         string title;
@@ -38,6 +44,7 @@ contract SplitBits {
         participants[_waddress] = participant;
     }
 
+   
     function createExpense(string memory _title, uint _amount, address[] memory _payees) public {
         require(_amount > 0);
         require(_payees.length > 0 && _payees.length <= 20);
