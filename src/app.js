@@ -58,17 +58,66 @@ App = {
       render: async () => {    
         // Render Account
         $('#username').html(App.account)
-        await App.renderExpenses();
+        // await App.renderExpenses();
+        await App.renderParticipants();
+      },
+
+      createParticipant: async () => {
+        const participantName = $('#participantName').val()
+        const participantAddress = $('#participantAddress').val()
+        console.log(participantName, participantAddress)
+        await App.splitBits.createParticipant(participantName, participantAddress,{from:App.account,gas:3000000})
+        window.location.reload();
+      },
+
+      renderParticipants: async () => {
+        const participantCount = await App.splitBits.participantCount()
+        const $participantTemplate = $('.participantTemplate')
+        // console.log(participantCount)
+        // console.log(await App.splitBits.participants("0xe8cF0D2844148EC8590B70063F55C4F7696F8e0F"))
+    
+        // Render out each expense with a new expense template
+        for (var i = 0; i < participantCount['c']; i++) {
+          const address = await App.splitBits.participantsAddresses(i)
+          const participant = await App.splitBits.participants(address)
+          const participantName = participant[0]
+          const participantAddress = participant[1]
+          const participantBalance = participant[2]['c'] * participant[2]['s']
+          console.log(participant)
+         
+          // Create the html for the expense
+          const $newParticipantTemplate = $participantTemplate.clone()
+          $newParticipantTemplate.find('.name').html(participantName)
+          $newParticipantTemplate.find('.address').html(participantAddress)
+          $newParticipantTemplate.find('.balance').html(participantBalance)
+          
+        $('#participantList').append($newParticipantTemplate)
+        
+        if(address != App.account ){
+          $('#involvedParticipants').append(`<option value="` + participantAddress +  `" data-badge="">`+ participantName + `</option>`) 
+        } 
+
+          
+          
+          $newParticipantTemplate.show()
+      }
       },
 
           
       createExpense: async () => {
         const expenseTitle = $('#newExpenseTitle').val()
         const expenseAmount = $('#newExpenseAmount').val()
-        const expensePaidTo = $('#newExpensePaidTo').val()
-        await App.splitBits.createExpense(expenseTitle, expenseAmount, expensePaidTo,{from:App.account,gas:3000000})
+        const involvedParticipants = $('#involvedParticipants').val()
+        
+
+        involvedParticipants.push(App.account)
+
+        console.log(involvedParticipants)
+        await App.splitBits.createExpense(expenseTitle, expenseAmount, involvedParticipants,{from:App.account,gas:3000000})
         window.location.reload()
       },      
+
+
 
       renderExpenses: async () => {
 
@@ -84,7 +133,7 @@ App = {
           const expensePaidTo = expense[3]
           
     
-        //   // Create the html for the expense
+          // Create the html for the expense
           const $newExpenseTemplate = $expenseTemplate.clone()
           $newExpenseTemplate.find('.title').html(expenseTitle)
           $newExpenseTemplate.find('.amount').html(expenseAmount)
