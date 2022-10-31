@@ -43,7 +43,6 @@ App = {
         // Set the current blockchain account
         App.account = web3.eth.accounts[0]
     
-        console.log(App.account);
     },
 
     loadContract: async () => {
@@ -60,68 +59,41 @@ App = {
         // Render Account
         $('#username').html(App.account)
         await App.renderExpenses();
-        // App.splitBits.createParticipant('Shubh',App.account)
       },
 
           
       createExpense: async () => {
-       console.log("here")
         const expenseTitle = $('#newExpenseTitle').val()
         const expenseAmount = $('#newExpenseAmount').val()
         const expensePaidTo = $('#newExpensePaidTo').val()
         await App.splitBits.createExpense(expenseTitle, expenseAmount, expensePaidTo,{from:App.account,gas:3000000})
         window.location.reload()
       },      
-  
-  
-      
 
       renderExpenses: async () => {
-        // Load the total task count from the blockchain
+
+        // Load the total expense count from the blockchain
         const expenseCount = await App.splitBits.expenseCount()
-
-        // const test = await App.splitBits.expenses(0)
-
         const $expenseTemplate = $('.expenseTemplate')
-        console.log(expenseCount)
     
-        // Render out each task with a new task template
+        // Render out each expense with a new expense template
         for (var i = 1; i <= expenseCount['c']; i++) {
           const expense = await App.splitBits.expenses(i)
-                    console.log(expense)
-
           const expenseTitle = expense[1]
           const expenseAmount = expense[2].toNumber()
           const expensePaidTo = expense[3]
           
     
-        //   // Create the html for the task
+        //   // Create the html for the expense
           const $newExpenseTemplate = $expenseTemplate.clone()
           $newExpenseTemplate.find('.title').html(expenseTitle)
           $newExpenseTemplate.find('.amount').html(expenseAmount)
           $newExpenseTemplate.find('.paid_to').html(expensePaidTo)
-          // $newExpenseTemplate.find('input')
-          //                 .prop('name', taskId)
-          //                 .prop('checked', taskCompleted)
-          //                 .on('click', App.toggleCompleted)
-    
-        //   // Put the task in the correct list
-        //   if (taskCompleted) {
-        //     $('#completedTaskList').append($newTaskTemplate)
-        //   } else {
-        //     $('#taskList').append($newTaskTemplate)
-        //   }
+          
         $('#expenseList').append($newExpenseTemplate)
 
-    
-        //   // Show the task
           $newExpenseTemplate.show()
-        // }
       }
-
-      
-
-
 },
 }
 

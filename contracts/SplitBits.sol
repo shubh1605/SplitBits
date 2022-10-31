@@ -21,7 +21,7 @@ contract SplitBits {
 
   
   constructor() public {
-    createExpense("Food", 10, "Harshit");
+    createExpense("Food", 10, "Somaiya");
   }
 
   function createExpense(string memory _title, int amount, string memory paid_to) public {
@@ -29,7 +29,5 @@ contract SplitBits {
     expenses[expenseCount] = Expense(expenseCount, _title, amount, paid_to);
     emit ExpenseCreated(expenseCount, _title, amount, paid_to);
   }
-
- 
 
 }
