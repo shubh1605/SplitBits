@@ -26,12 +26,29 @@
         font-size: 1.5rem;'>Username: <span id="username"></span></label>
             <br><br>
 
-        <!-- <form onSubmit="App.createParticipant(); return false;">
-          <input id="participantName" type="text" class="form-control" placeholder="Add expense title..." required>
-          <input id="participantAddress" type="number" class="form-control" placeholder="Add expense amount..." required>
-          <br>
-          <input type="submit" class="btn" >
-        </form> -->
+        <form onSubmit="App.withdraw(); return false;">
+          <button type="submit">
+            Withdraw money
+          </button>
+        </form>
+
+
+        <form onSubmit="App.createPayment(); return false;">
+          <div class="container">
+            <div class="row">
+              <label id="totalL"><i class="fas fa-coins"></i> Title</label><br>
+            <input type="text" id="payTitle" placeholder="Title">
+
+            <label id="totalL"><i class="fas fa-coins"></i> Pay to</label>
+              <select class="js-select2" id="payParticipant">
+                
+              </select>
+            </div>
+            <label id="totalL"><i class="fas fa-coins"></i> Amount</label>
+            <input type="text" id="payParticipantAmount" placeholder="Amount">
+          </div>
+          <button type="submit"> Create Payment </button>
+        </form>
 
         <form class="insert" onSubmit="App.createParticipant(); return false;">
           <label id="totalL"><i class="fas fa-coins"></i> Participant Name</label>
@@ -112,6 +129,30 @@
                   <td class="title"></td>
                   <td class="amount"></td>
                   <td class="paid_to"></td>
+                </tr>
+                </tbody>
+              </table>
+            </div>  
+            
+            
+            
+          </div>
+          <div>
+           
+            <div class="container mt-5">
+              <table class="table" id="paymentList">
+                <thead>
+                  <tr>
+                    <th scope="col">Title</th>
+                    <th scope="col">Amount</th>
+                    <th scope="col">To</th>
+                  </tr>
+                </thead>
+                <tbody>
+                <tr  class="paymentTemplate"  style="display: none">
+                  <td class="payment_title"></td>
+                  <td class="payment_amount"></td>
+                  <td class="payment_paid_to"></td>
                 </tr>
                 </tbody>
               </table>

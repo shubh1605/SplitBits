@@ -7,6 +7,7 @@ contract SplitBits {
     //}
     int public expenseCount = 0;
     int public participantCount = 0;
+    int public paymentCount = 0;
 
     struct Participant {
         string name;
@@ -56,14 +57,15 @@ contract SplitBits {
 
     mapping(address => uint) public withdrawals;
     
-    function createPayment(string memory _title, address _payee) public payable {   
-        require(msg.value > 0);
+    function createPayment(string memory _title, address _payee, uint _amount) public payable {   
+        require(_amount > 0);
         require(_payee != msg.sender);
         require(msg.sender == participants[msg.sender].waddress);
         require(_payee == participants[_payee].waddress);
-        Payment memory payment = Payment({title: _title, amount: msg.value, payer: msg.sender, payee: _payee});
+        Payment memory payment = Payment({title: _title, amount: _amount, payer: msg.sender, payee: _payee});
         payments.push(payment);
-        withdrawals[_payee] += msg.value;
+        paymentCount++;
+        withdrawals[_payee] += _amount;
         syncBalancePayment(payment);
     }
 
@@ -86,7 +88,7 @@ contract SplitBits {
         }       
     }
 
-    function withdraw() public  {
+    function withdraw() public payable {
         require(withdrawals[msg.sender] > 0);
         uint amount = withdrawals[msg.sender];
         withdrawals[msg.sender] = 0;
