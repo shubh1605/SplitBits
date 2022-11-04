@@ -1,4 +1,4 @@
-pragma solidity ^0.5.0;
+pragma solidity ^0.6.0;
 
 contract SplitBits {
 
@@ -69,6 +69,10 @@ contract SplitBits {
         syncBalancePayment(payment);
     }
 
+    function getSmartContractBalance() external view returns(uint) {
+        return address(this).balance;
+    }
+
     function syncBalancePayment(Payment memory payment) internal {
         participants[payment.payee].balance -= int(payment.amount);
         participants[payment.payer].balance += int(payment.amount);
@@ -88,11 +92,11 @@ contract SplitBits {
         }       
     }
 
-    function withdraw() public payable {
+    function withdraw() payable public  {
         require(withdrawals[msg.sender] > 0);
         uint amount = withdrawals[msg.sender];
         withdrawals[msg.sender] = 0;
-        msg.sender.transfer(amount);
+        payable(msg.sender).transfer(amount*1000000000000000000 );
     }
 
     function isParticipants(address[] memory list) internal returns (bool) {

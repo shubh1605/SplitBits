@@ -72,8 +72,10 @@ App = {
       },
 
       renderParticipants: async () => {
-        const w = await App.splitBits.withdrawals('0x28e54DE9DE8D4261Cd6e57bF9cc5E8932DA719a5');
+        const w = await App.splitBits.withdrawals('0x14eba0b9b380ae44e6f49610030051f44704c9df');
         console.log(w)
+        const t = await App.splitBits.getSmartContractBalance();
+        console.log(t)
         const participantCount = await App.splitBits.participantCount()
         const $participantTemplate = $('.participantTemplate')
         // console.log(participantCount)
