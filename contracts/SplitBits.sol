@@ -1,4 +1,5 @@
 pragma solidity ^0.6.0;
+pragma experimental ABIEncoderV2;
 
 contract SplitBits {
 
@@ -53,6 +54,10 @@ contract SplitBits {
         expenses.push(expense);
         calculateBalance((expenses.length)-1);
         expenseCount++;
+    }
+
+    function getInvolvedParticipants(uint index) public returns (address [] memory){
+        return expenses[index].payees;
     }
 
     mapping(address => uint) public withdrawals;

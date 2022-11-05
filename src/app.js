@@ -58,7 +58,7 @@ App = {
       render: async () => {    
         // Render Account
         $('#username').html(App.account)
-        // await App.renderExpenses();
+        await App.renderExpenses();
         await App.renderParticipants();
         await App.renderPayments();
       },
@@ -135,13 +135,16 @@ App = {
           const paymentTitle = payment[0]
           const paymentAmount = payment[1].toNumber()
           const participant = await App.splitBits.participants(payment[3])
+          const participant2 = await App.splitBits.participants(payment[2])
           const paymentPaidTo = participant[0]
+          const paymentPaidBy = participant2[0]
           
     
           // Create the html for the expense
           const $newPaymentTemplate = $paymentTemplate.clone()
           $newPaymentTemplate.find('.payment_title').html(paymentTitle)
           $newPaymentTemplate.find('.payment_amount').html(paymentAmount)
+          $newPaymentTemplate.find('.payment_paid_by').html(paymentPaidBy)
           $newPaymentTemplate.find('.payment_paid_to').html(paymentPaidTo)
           
         $('#paymentList').append($newPaymentTemplate)
@@ -172,18 +175,23 @@ App = {
         const $expenseTemplate = $('.expenseTemplate')
     
         // Render out each expense with a new expense template
-        for (var i = 1; i <= expenseCount['c']; i++) {
+        for (var i = 0; i < expenseCount['c']; i++) {
           const expense = await App.splitBits.expenses(i)
-          const expenseTitle = expense[1]
-          const expenseAmount = expense[2].toNumber()
-          const expensePaidTo = expense[3]
+          const expenseTitle = expense[0]
+          const expenseAmount = expense[1].toNumber()
+          const paid_by = expense[2]
+          // console.log(expense[2])
+          console.log(expense)
+
+          // const temp = await App.splitBits.getInvolvedParticipants(i)
+          // console.log(temp)
           
     
           // Create the html for the expense
           const $newExpenseTemplate = $expenseTemplate.clone()
-          $newExpenseTemplate.find('.title').html(expenseTitle)
+          $newExpenseTemplate.find('.e-title').html(expenseTitle)
           $newExpenseTemplate.find('.amount').html(expenseAmount)
-          $newExpenseTemplate.find('.paid_to').html(expensePaidTo)
+          $newExpenseTemplate.find('.paid_by').html(paid_by)
           
         $('#expenseList').append($newExpenseTemplate)
 

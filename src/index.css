@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Barriecito|Lora&display=swap');
+/* @import url('https://fonts.googleapis.com/css?family=Barriecito|Lora&display=swap');
 
 * {
   margin: 0;
@@ -124,7 +124,6 @@ footer {
 }
 
 
-/*  =============== . MEDIA QUERIES ============ */
 @media screen and (max-width: 992px) {
   .insert {
   width: 80%;
@@ -147,14 +146,14 @@ footer {
   display: inline-table;
 
 }
-}
+} */
 
 .select2-container {
-  min-width: 400px;
+  min-width: 730px;
 }
 
 .select2-results__option {
-  padding-right: 20px;
+  padding-right: 40px;
   vertical-align: middle;
 }
 .select2-results__option:before {
@@ -173,7 +172,7 @@ footer {
   font-family:fontAwesome;
   content: "\f00c";
   color: #fff;
-  background-color: #f77750;
+  background-color: #6A1B9A;
   border: 0;
   display: inline-block;
   padding-left: 3px;
@@ -182,7 +181,7 @@ footer {
 	background-color: #fff;
 }
 .select2-container--default .select2-results__option--highlighted[aria-selected] {
-	background-color: #eaeaeb;
+	background-color: #202091;
 	color: #272727;
 }
 .select2-container--default .select2-selection--multiple {
@@ -192,7 +191,7 @@ footer {
 	border-radius: 4px;
 }
 .select2-container--default.select2-container--focus .select2-selection--multiple {
-	border-color: #f77750;
+	border-color: #6A1B9A;
 	border-width: 2px;
 }
 .select2-container--default .select2-selection--multiple {
@@ -207,18 +206,272 @@ footer {
 .select2-selection .select2-selection--multiple:after {
 	content: 'hhghgh';
 }
-/* select with icons badges single*/
 .select-icon .select2-selection__placeholder .badge {
 	display: none;
 }
-.select-icon .placeholder {
-/* 	display: none; */
-}
+
 .select-icon .select2-results__option:before,
 .select-icon .select2-results__option[aria-selected=true]:before {
 	display: none !important;
-	/* content: "" !important; */
 }
 .select-icon  .select2-search--dropdown {
 	display: none;
+}
+
+
+body {
+  background: #eee
+}
+
+#regForm {
+  background-color: #ffffff;
+  margin: 0px auto;
+  font-family: Raleway;
+  padding: 40px;
+  border-radius: 10px
+}
+
+#register{
+
+color: #6A1B9A;
+}
+
+h1 {
+  text-align: center
+}
+
+input {
+  padding: 10px;
+  width: 100%;
+  font-size: 17px;
+  font-family: Raleway;
+  border: 1px solid #aaaaaa;
+  border-radius: 10px;
+  -webkit-appearance: none;
+}
+
+
+
+.tab input:focus{
+
+border:1px solid #6a1b9a !important;
+outline: none;
+}
+
+input.invalid {
+
+  border:1px solid #e03a0666;
+}
+
+.tab {
+  display: none
+}
+
+button {
+  background-color: #6A1B9A;
+  color: #ffffff;
+  border: none;
+  border-radius: 50%;
+  padding: 10px 20px;
+  font-size: 17px;
+  font-family: Raleway;
+  cursor: pointer
+}
+
+button:hover {
+  opacity: 0.8
+}
+
+button:focus{
+
+outline: none !important;
+}
+
+#prevBtn {
+  background-color: #bbbbbb
+}
+
+
+.all-steps{
+    text-align: center;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  width: 100%;
+  display: inline-flex;
+  justify-content: center;
+}
+
+.step {
+     height: 40px;
+  width: 40px;
+  margin: 0 2px;
+  background-color: #bbbbbb;
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 15px;
+  color: #6a1b9a;
+  opacity: 0.5;
+}
+
+.step.active {
+  opacity: 1
+}
+
+
+.step.finish {
+ color: #fff;
+ background: #6a1b9a;
+ opacity: 1;
+
+}
+
+
+
+.all-steps {
+  text-align: center;
+  margin-top: 30px;
+  margin-bottom: 30px
+}
+
+.thanks-message {
+  display: none
+}
+
+
+/* TABLE CSS */
+
+
+/* ################################################# This is part of the UI framework being developed. ################################################# */
+body {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  font-family: 'Roboto', sans-serif;
+}
+.title {
+  text-align: center;
+  padding: 20px 0;
+  font-size: 40px;
+  font-weight: 300;
+  color: #636983;
+}
+.wrapper {
+  background-color: #f6f8ff;
+  width: 100%;
+  min-height: 100vh;
+}
+.wrapper .line {
+  width: 50%;
+  margin: 50px auto 0 auto;
+  height: 1px;
+  background-color: #c3d2e3;
+}
+.table {
+  width: 60%;
+  margin: 0 auto;
+}
+.table .header {
+  font-size: 16px;
+  font-weight: 400;
+}
+.table table {
+  width: 100%;
+  font-size: 16px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 25px 20px -25px #000;
+}
+.table table input.search {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+  border-radius: 10px;
+  border: 0;
+  outline: 1px solid #efefef;
+  background: #fbfbfb;
+  transition: all 0.2s;
+}
+.table table input.search:focus {
+  outline: 2px solid #1f74ff;
+  background: white;
+}
+.table table thead {
+  border-spacing: 0;
+}
+.table table thead td {
+  font-size: 18px;
+  font-weight: 600;
+  color: #666;
+  padding: 10px;
+}
+.table table thead tr:nth-child(1) {
+  background-color: #fbfbfb;
+  background: linear-gradient(180deg, rgba(251, 251, 251, 1) 0%, rgba(251, 251, 251, 1) 89%, rgba(237, 237, 237, 1) 100%);
+}
+.table table thead tr:nth-child(1) td:nth-child(1) {
+  border-radius: 10px 0 0 0;
+}
+.table table thead tr:nth-child(1) td:nth-last-child(1) {
+  border-radius: 0 10px 0 0;
+}
+.table table tbody tr {
+  transition: all 0.2s;
+}
+.table table tbody tr td {
+  padding: 10px;
+  color: #666;
+}
+.table table tbody tr:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px -15px #000;
+  background-color: #ededed 1c;
+}
+.table table tbody tr.success td {
+  color: #46c93a;
+  background: #e8f5e7;
+}
+.table table tbody tr.primary td {
+  color: #1f74ff;
+  background: #d4e4ff;
+}
+.table table tfoot tr td {
+  border-radius: 0 0 10px 10px;
+}
+.table table tfoot tr td {
+  padding: 3px 10px;
+  background-color: #fbfbfb;
+  background: linear-gradient(0deg, rgba(251, 251, 251, 1) 0%, rgba(251, 251, 251, 1) 89%, rgba(237, 237, 237, 1) 100%);
+  text-align: right;
+}
+.pagination {
+  display: flex;
+  position: relative;
+  right: 10px;
+  justify-content: flex-end;
+  gap: 5px;
+}
+.pagination .page {
+  width: 10px;
+  height: 30px;
+  flex-basis: 30px;
+  text-align: center;
+  box-sizing: border-box;
+  padding-top: 6px;
+  background: #f0f3f4;
+  border-radius: 7px;
+  color: #636983;
+  cursor: pointer;
+}
+.pagination .page.active {
+  background-color: #1f74ff;
+  color: white;
+  font-weight: 600;
+}
+@media (max-width: 700px) {
+  .table {
+    width: 90%;
+ }
 }
